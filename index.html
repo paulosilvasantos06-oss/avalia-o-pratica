@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apoio Digital - Ajuda para Idosos</title>
+    <style>
+        /* Estilos Globais e Variáveis */
+        :root {
+            --bg-color: #f4f6f9;
+            --text-color: #222222;
+            --card-bg: #ffffff;
+            --btn-bg: #0056b3;
+            --btn-text: #ffffff;
+            --border-color: #cccccc;
+            --font-size: 18px;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --btn-bg: #bb86fc;
+            --btn-text: #000000;
+            --border-color: #444444;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: var(--font-size);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Barra Acessibilidade e Cabeçalho */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 2px solid var(--border-color);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:focus, button:hover {
+            outline: 3px solid #ffbf00;
+        }
+
+        /* Conteúdo Principal */
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .card img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        h1, h2 {
+            margin-top: 0;
+        }
+
+        a.btn-link {
+            display: inline-block;
+            margin-top: 15px;
+            background-color: #28a745;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Portal de Apoio à Terceira Idade</h1>
+        <p>Informações simples e úteis para o seu dia a dia.</p>
+        
+        <div class="controls">
+            <button onclick="toggleDarkMode()">⚙️ Alternar Modo Escuro</button>
+            <button onclick="changeFontSize(1)">A+ Aumentar Letra</button>
+            <button onclick="changeFontSize(-1)">A- Diminuir Letra</button>
+        </div>
+    </header>
+
+    <main>
+        <article class="card">
+            <img src="https://images.unsplash.com/photo-1543269664-76bc3997d9ea?w=800" alt="Pessoa idosa usando um smartphone com facilidade">
+            <h2>Como Usar o Celular Sem Complicação</h2>
+            <p>Aprenda a enviar mensagens de voz, fazer chamadas de vídeo com a família e navegar na internet com segurança. O uso do smartphone ajuda a manter o contato com quem você ama.</p>
+            <a href="https://www.gov.br/conectegov" target="_blank" class="btn-link">Ver Guia do Governo Digital</a>
+        </article>
+
+        <article class="card">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800" alt="Pessoas idosas fazendo caminhada ao ar livre">
+            <h2>Dicas de Saúde e Exercícios Leves</h2>
+            <p>Manter o corpo em movimento fortalece as articulações e melhora o humor. Caminhadas diárias de 20 minutos e alongamentos simples ajudam a manter a independência física.</p>
+            <a href="https://www.gov.br/saude" target="_blank" class="btn-link">Acessar Portal da Saúde (SUS)</a>
+        </article>
+
+        <article class="card">
+            <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?w=800" alt="Documentos e óculos sobre uma mesa">
+            <h2>Estatuto do Idoso e Seus Direitos</h2>
+            <p>Conheça as leis de gratuidade em transportes, prioridade em atendimentos médicos e bancários, além de benefícios de assistência social garantidos por lei.</p>
+            <a href="https://www.gov.br/mdh/pt-br/assuntos/pessoa-idosa" target="_blank" class="btn-link">Consulte Seus Direitos</a>
+        </article>
+    </main>
+
+    <footer>
+        <p>Site desenvolvido para facilitar a acessibilidade. Informações de utilidade pública.</p>
+    </footer>
+
+    <script>
+        // Função para Modo Escuro
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Função para Aumentar/Diminuir Fonte
+        let currentFontSize = 18;
+        function changeFontSize(step) {
+            currentFontSize += step * 2;
+            // Limites para não quebrar o layout
+            if (currentFontSize < 14) currentFontSize = 14;
+            if (currentFontSize > 28) currentFontSize = 28;
+            
+            document.documentElement.style.setProperty('--font-size', currentFontSize + 'px');
+        }
+    </script>
+
+</body>
+</html>
