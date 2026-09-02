@@ -3,52 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apoio Digital - Ajuda para Idosos</title>
+    <title>Portal da Terceira Idade - Acessível e Bonito</title>
     <style>
-        /* Estilos Globais e Variáveis */
+        /* Variáveis de Cores e Estilos Globais */
         :root {
-            --bg-color: #f4f6f9;
-            --text-color: #222222;
+            --bg-gradient: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            --text-color: #1a202c;
             --card-bg: #ffffff;
-            --btn-bg: #0056b3;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            --btn-bg: #2563eb;
+            --btn-hover: #1d4ed8;
             --btn-text: #ffffff;
-            --border-color: #cccccc;
-            --font-size: 18px;
+            --link-bg: #059669;
+            --link-hover: #047857;
+            --border-color: #cbd5e1;
+            --font-size: 19px;
         }
 
+        /* Estilos para o Modo Escuro */
         body.dark-mode {
-            --bg-color: #121212;
-            --text-color: #e0e0e0;
-            --card-bg: #1e1e1e;
-            --btn-bg: #bb86fc;
-            --btn-text: #000000;
-            --border-color: #444444;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --text-color: #f1f5f9;
+            --card-bg: #1e293b;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            --btn-bg: #38bdf8;
+            --btn-hover: #0ea5e9;
+            --btn-text: #0f172a;
+            --link-bg: #34d399;
+            --link-hover: #10b981;
+            --border-color: #334155;
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: var(--font-size);
-            background-color: var(--bg-color);
+            background: var(--bg-gradient);
             color: var(--text-color);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.7;
+            min-height: 100vh;
+            transition: background 0.4s ease, color 0.4s ease;
         }
 
-        /* Barra Acessibilidade e Cabeçalho */
+        /* Cabeçalho Bonito */
         header {
             background-color: var(--card-bg);
-            border-bottom: 2px solid var(--border-color);
-            padding: 20px;
+            border-bottom: 3px solid var(--btn-bg);
+            padding: 30px 20px;
             text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.2rem;
+        }
+
+        header p {
+            margin: 0 0 20px 0;
+            opacity: 0.9;
+        }
+
+        /* Painel de Controle de Acessibilidade */
         .controls {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
@@ -56,62 +77,111 @@
             background-color: var(--btn-bg);
             color: var(--btn-text);
             border: none;
-            padding: 12px 20px;
+            padding: 12px 24px;
             font-size: 1rem;
-            font-weight: bold;
-            border-radius: 8px;
+            font-weight: 700;
+            border-radius: 50px;
             cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s, background-color 0.2s;
         }
 
-        button:focus, button:hover {
-            outline: 3px solid #ffbf00;
+        button:hover {
+            background-color: var(--btn-hover);
+            transform: translateY(-2px);
         }
 
-        /* Conteúdo Principal */
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:focus {
+            outline: 4px solid #f59e0b;
+        }
+
+        /* Container Principal */
         main {
-            max-width: 900px;
-            margin: 20px auto;
+            max-width: 850px;
+            margin: 40px auto;
             padding: 0 20px;
         }
 
+        /* Cards Estilizados */
         .card {
             background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 35px;
+            box-shadow: var(--card-shadow);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            height: 300px;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 20px;
         }
 
         .card img {
             width: 100%;
-            max-height: 350px;
+            height: 100%;
             object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
+            transition: transform 0.5s ease;
         }
 
-        h1, h2 {
+        .card:hover img {
+            transform: scale(1.03);
+        }
+
+        .card h2 {
             margin-top: 0;
+            font-size: 1.6rem;
+            color: var(--btn-bg);
         }
 
+        body.dark-mode .card h2 {
+            color: var(--btn-bg);
+        }
+
+        /* Botões de Link de Ação */
         a.btn-link {
             display: inline-block;
             margin-top: 15px;
-            background-color: #28a745;
+            background-color: var(--link-bg);
             color: #ffffff;
             text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 8px;
+            padding: 14px 28px;
+            border-radius: 50px;
             font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.2s, transform 0.2s;
         }
 
-        /* Rodapé */
+        body.dark-mode a.btn-link {
+            color: #0f172a;
+        }
+
+        a.btn-link:hover {
+            background-color: var(--link-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Rodapé Elegante */
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 30px 20px;
+            margin-top: 50px;
             border-top: 1px solid var(--border-color);
-            margin-top: 40px;
+            font-size: 0.95rem;
+            opacity: 0.8;
         }
     </style>
 </head>
@@ -119,10 +189,10 @@
 
     <header>
         <h1>Portal de Apoio à Terceira Idade</h1>
-        <p>Informações simples e úteis para o seu dia a dia.</p>
+        <p>Um espaço simples, bonito e fácil de usar para o seu dia a dia.</p>
         
         <div class="controls">
-            <button onclick="toggleDarkMode()">⚙️ Alternar Modo Escuro</button>
+            <button onclick="toggleDarkMode()">⚙️ Modo Escuro</button>
             <button onclick="changeFontSize(1)">A+ Aumentar Letra</button>
             <button onclick="changeFontSize(-1)">A- Diminuir Letra</button>
         </div>
@@ -130,44 +200,51 @@
 
     <main>
         <article class="card">
-            <img src="https://images.unsplash.com/photo-1543269664-76bc3997d9ea?w=800" alt="Pessoa idosa usando um smartphone com facilidade">
+            <div class="card-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1543269664-76bc3997d9ea?w=800" alt="Pessoa idosa usando um smartphone de maneira confortável">
+            </div>
             <h2>Como Usar o Celular Sem Complicação</h2>
-            <p>Aprenda a enviar mensagens de voz, fazer chamadas de vídeo com a família e navegar na internet com segurança. O uso do smartphone ajuda a manter o contato com quem você ama.</p>
-            <a href="https://www.gov.br/conectegov" target="_blank" class="btn-link">Ver Guia do Governo Digital</a>
+            <p>Aprenda a enviar mensagens de voz, fazer chamadas de vídeo com a família e navegar na internet de forma segura. O smartphone pode conectar você às pessoas que mais ama.</p>
+            <a href="https://www.gov.br/conectegov" target="_blank" rel="noopener" class="btn-link">Ver Guia Prático</a>
         </article>
 
         <article class="card">
-            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800" alt="Pessoas idosas fazendo caminhada ao ar livre">
+            <div class="card-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800" alt="Pessoas idosas sorrindo e praticando caminhada ao ar livre">
+            </div>
             <h2>Dicas de Saúde e Exercícios Leves</h2>
-            <p>Manter o corpo em movimento fortalece as articulações e melhora o humor. Caminhadas diárias de 20 minutos e alongamentos simples ajudam a manter a independência física.</p>
-            <a href="https://www.gov.br/saude" target="_blank" class="btn-link">Acessar Portal da Saúde (SUS)</a>
+            <p>Manter o corpo em movimento fortalece a musculatura, protege as articulações e melhora a disposição. Caminhadas curtas e alongamentos diários fazem toda a diferença.</p>
+            <a href="https://www.gov.br/saude" target="_blank" rel="noopener" class="btn-link">Acessar Portal da Saúde</a>
         </article>
 
         <article class="card">
-            <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?w=800" alt="Documentos e óculos sobre uma mesa">
+            <div class="card-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?w=800" alt="Óculos de leitura em cima de um documento impresso">
+            </div>
             <h2>Estatuto do Idoso e Seus Direitos</h2>
-            <p>Conheça as leis de gratuidade em transportes, prioridade em atendimentos médicos e bancários, além de benefícios de assistência social garantidos por lei.</p>
-            <a href="https://www.gov.br/mdh/pt-br/assuntos/pessoa-idosa" target="_blank" class="btn-link">Consulte Seus Direitos</a>
+            <p>Fique por dentro das leis de atendimento prioritário em bancos e hospitais, gratuidades em transportes públicos e benefícios de assistência social garantidos por lei.</p>
+            <a href="https://www.gov.br/mdh/pt-br/assuntos/pessoa-idosa" target="_blank" rel="noopener" class="btn-link">Consulte Seus Direitos</a>
         </article>
     </main>
 
     <footer>
-        <p>Site desenvolvido para facilitar a acessibilidade. Informações de utilidade pública.</p>
+        <p>Desenvolvido com foco na acessibilidade e facilidade de leitura.</p>
     </footer>
 
     <script>
-        // Função para Modo Escuro
+        // Função para Alternar Modo Escuro
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
         }
 
-        // Função para Aumentar/Diminuir Fonte
-        let currentFontSize = 18;
+        // Função para Aumentar / Diminuir Fonte
+        let currentFontSize = 19;
         function changeFontSize(step) {
             currentFontSize += step * 2;
-            // Limites para não quebrar o layout
-            if (currentFontSize < 14) currentFontSize = 14;
-            if (currentFontSize > 28) currentFontSize = 28;
+            
+            // Define limites para a fonte não ficar nem muito pequena nem gigantesca
+            if (currentFontSize < 15) currentFontSize = 15;
+            if (currentFontSize > 27) currentFontSize = 27;
             
             document.documentElement.style.setProperty('--font-size', currentFontSize + 'px');
         }
